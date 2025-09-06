@@ -337,7 +337,7 @@
                     <div class="form-group">
                         <input type="text" id="new-section-name-ar" placeholder="اسم القسم الجديد (عربي)">
                         <input type="text" id="new-section-name-en" placeholder="New Section Name (English)">
-                        <button class="btn" onclick="addSection()" data-translate="add_section_btn">إضافة قسم</button>
+                        <button class="btn" id="add-section-btn" data-translate="add_section_btn">إضافة قسم</button>
                     </div>
                     <div id="sections-list"></div>
                 </div>
@@ -767,9 +767,25 @@
         window.deleteSection = deleteSection;
         window.deleteItem = deleteItem;
         window.editItem = editItem;
+        // ... الكود الحالي الخاص بك ...
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    const addSectionBtn = document.getElementById('add-section-btn');
+    if(addSectionBtn) {
+        addSectionBtn.addEventListener('click', addSection);
+    }
+});
+
+// اجعل الدوال متاحة بشكل عام إذا لزم الأمر
+window.deleteSection = deleteSection;
+window.deleteItem = deleteItem;
+window.editItem = editItem;
+
+</script>
     </script>
 </body>
 </html>
+
 
 
 
