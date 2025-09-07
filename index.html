@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>گادري - قائمة الطعام</title>
-    <!-- Google Fonts for a modern look - Changed to Cairo for better character support -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* --- General Styles --- */
@@ -291,7 +289,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Customer View -->
         <div id="customer-view">
             <header class="header">
                 <button class="language-btn" id="lang-btn" onclick="toggleLanguage()">EN</button>
@@ -302,15 +299,12 @@
             </header>
             
             <div class="category-tabs" id="category-tabs">
-                <!-- Populated by JS -->
-            </div>
+                </div>
             
             <div class="menu-content" id="menu-content">
-                <!-- Populated by JS -->
-            </div>
+                </div>
         </div>
         
-        <!-- Admin Panel (Functionality remains, styling updated) -->
         <div id="admin-panel" class="admin-panel">
             <div id="login-section" class="login-form">
                 <h2 data-translate="admin_login_title">🔐 تسجيل دخول المدير</h2>
@@ -351,7 +345,6 @@
         </div>
     </div>
     
-    <!-- Add/Edit Item Modal -->
     <div id="item-modal" class="modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeItemModal()">&times;</button>
@@ -386,7 +379,6 @@
         </div>
     </div>
     
-    <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, onSnapshot, addDoc, doc, deleteDoc, updateDoc, writeBatch, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -610,7 +602,7 @@
             renderMenu(allItems);
         }
 
-        // --- Admin and Modal Functions (no logic change) ---
+        // --- Admin and Modal Functions ---
         window.showAdminPanel = function() {
             document.getElementById('customer-view').style.display = 'none';
             document.getElementById('admin-panel').style.display = 'block';
@@ -670,12 +662,17 @@
         window.addSection = async function() {
             const nameAr = document.getElementById('new-section-name-ar').value.trim();
             const nameEn = document.getElementById('new-section-name-en').value.trim();
-            if (!nameAr || !nameEn) { alert(translations[currentLang].enter_section_name_alert); return; }
+            if (!nameAr || !nameEn) { 
+                alert(translations[currentLang].enter_section_name_alert); 
+                return; 
+            }
             try {
                 await addDoc(sectionsCol, { name_ar: nameAr, name_en: nameEn });
                 document.getElementById('new-section-name-ar').value = '';
                 document.getElementById('new-section-name-en').value = '';
-            } catch (e) { console.error("Error adding document: ", e); }
+            } catch (e) { 
+                console.error("Error adding document: ", e); 
+            }
         }
 
         window.deleteSection = async function(id) {
@@ -767,20 +764,7 @@
         window.deleteSection = deleteSection;
         window.deleteItem = deleteItem;
         window.editItem = editItem;
-        // ... الكود الحالي الخاص بك ...
-
-// اجعل الدوال متاحة بشكل عام إذا لزم الأمر
-window.deleteSection = deleteSection;
-window.deleteItem = deleteItem;
-window.editItem = editItem;
-
+        window.addSection = addSection;
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
